@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module":"amd",
+        "esModuleInterop": true,
+        "target": "es6",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outFile": "dist/public/js/app.js",
+        "baseUrl": ".",
+        "jsx": "react"
+    },
+    "include": [
+        "src/public/js/"
+    ]
+}
