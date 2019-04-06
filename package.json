@@ -13,19 +13,21 @@
     "build": "npm run build-sass && npm run build-ts && npm run build-ts-client && npm run copy-static-assets",
     "serve": "node dist/server.js",
     "watch-node": "nodemon dist/server.js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-node\"",
-    "test": "jest --forceExit --coverage --verbose",
-    "watch-test": "npm run test -- --watchAll",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,Server,Client,Node\" -c \"yellow.bold,cyan.bold,green.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-ts-client\" \"npm run watch-node\"",
     "build-ts": "tsc",
-    "build-ts-client": "tsc --project tsconfig-client.json",
     "watch-ts": "tsc -w",
+    "build-ts-client": "tsc --project tsconfig-client.json",
     "watch-ts-client": "tsc --project tsconfig-client.json -w",
-    "build-sass": "node-sass src/public/css/main.scss dist/public/css/main.css",
-    "watch-sass": "node-sass -w src/public/css/main.scss dist/public/css/main.css",
+    "build-sass": "node-sass client/css/main.scss dist/public/css/main.css",
+    "watch-sass": "node-sass -w client/css/main.scss dist/public/css/main.css",
     "copy-static-assets": "npx r.js -o bundle-libs.js && node copyStaticAssets.js",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "npm run copy-static-assets && concurrently -k -p \"[{name}]\" -n \"Sass,Server,Client,Node\" -c \"yellow.bold,cyan.bold, blue.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-ts-client\" \"npm run serve-debug\""
+  },
+  "aside": {
+    "test": "jest --forceExit --coverage --verbose",
+    "watch-test": "npm run test -- --watchAll"
   },
   "dependencies": {
     "async": "^2.6.0",

@@ -1,11 +1,14 @@
 var shell = require("shelljs");
+var fs = require("fs");
 
-// TODO tlu : only if dev
-shell.mkdir("-p", "dist/public/src/public");
-shell.ln("-s", "../../../../src/public/js", "dist/public/src/public/js");
+if (!fs.existsSync("dist/public/src/public/js")) {
+    shell.mkdir("-p", "dist/public/src/public");
+    shell.ln("-s", "../../../../client/js", "dist/public/src/public/js");
+}
 
 
-shell.cp("-R", "src/public/js/lib", "dist/public/js/");
-shell.cp("-R", "src/public/fonts", "dist/public/");
-shell.cp("-R", "src/public/images", "dist/public/");
+
+shell.cp("-R", "client/fonts/", "dist/public/");
+shell.cp("-R", "client/images/", "dist/public/");
+shell.cp("-R", "client/js/lib/", "dist/public/js/");
 
