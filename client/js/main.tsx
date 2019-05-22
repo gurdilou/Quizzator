@@ -1,9 +1,15 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {Voter} from "./Voter";
+import {Admin} from "./Admin";
 
 
 let bootstrap = () => {
-    ReactDOM.render(<h1>Hello world John</h1>, document.getElementById("app"));
+    if((window as any)["admin"] === true) {
+        ReactDOM.render(<Admin/>, document.getElementById("app"));
+    }else {
+        ReactDOM.render(<Voter/>, document.getElementById("app"));
+    }
 };
 
 

@@ -1,0 +1,27 @@
+.card {
+  $bg-transparency: 0.4;
+
+  display: block;
+  background: transparentize(white, $bg-transparency);
+  border-radius: 18px;
+  border: 1px solid #cccccc;
+  box-shadow: 4px 4px 5px transparentize(black, 0.8);
+  overflow: hidden;
+  margin: 15px;
+  opacity: 1;
+  transition: height 1s ease-out, opacity 700ms ease-in;
+
+  &-with-margin {
+    margin: 15px;
+  }
+
+  &-selected {
+    background: transparentize(lighten($primary-bg, 45), $bg-transparency);
+    border-color: $primary-bg;
+  }
+
+  &-hidden {
+    height: 0 !important;
+    opacity: 0;
+  }
+}

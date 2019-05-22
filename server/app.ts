@@ -12,8 +12,12 @@ import passport from "passport";
 import expressValidator from "express-validator";
 import bluebird from "bluebird";
 import {MONGODB_URI, SESSION_SECRET} from "./util/secrets";
+import * as ws from 'ws';
 // Controllers (route handlers)
-import * as homeController from "./controllers/home";
+import * as pageController from "./controllers/pageController";
+import * as questionsController from "./controllers/questionsController";
+import {Application} from "express-ws";
+import {NextFunction, Request, Response} from "express-serve-static-core";
 // API keys and Passport configuration
 
 const MongoStore = mongo(session);
@@ -23,7 +27,7 @@ dotenv.config({path: ".env.example"});
 
 
 // Create Express server
-const app = express();
+const app: Application = require('express-ws')(express()).app;
 
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
@@ -38,7 +42,7 @@ mongoose.connect(mongoUrl, {useMongoClient: true}).then(
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
-app.set("views", path.join(__dirname, "..", "server", "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(compression());
 app.use(bodyParser.json());
@@ -81,10 +85,40 @@ app.use(
     express.static(path.join(__dirname, "public"), {maxAge: 31557600000})
 );
 
+
+
 /**
  * Primary app routes.
  */
-app.get("/", homeController.index);
-app.get("/admin", homeController.index);
+app.get("/", pageController.voter);
+app.get("/admin", pageController.admin);
+// app.get("/admin", .index);
+app.ws('/questions', (ws: ws, req: express.Request, next: express.NextFunction) => {
+    questionsController.questionsController(ws as any, req, next);
+});
+app.ws('/quizAdmin', (ws: ws, req: express.Request, next: express.NextFunction) => {
+    questionsController.adminController(ws as any, req, next);
+});
+
+
+// Handle errors
+if (app.get('env') === 'development') {
+
+    app.use((err: any, req: Request, res: Response, next: NextFunction)=> {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+
+}
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
 
 export default app;

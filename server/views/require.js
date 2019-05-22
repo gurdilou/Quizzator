@@ -3,11 +3,11 @@ requirejs.config({
     paths: {
         'libs': 'js/lib/libs',
     },
-    bundles: {'libs': ['react', 'react-dom']}
+    bundles: {'libs': ['react', 'react-dom', 'react-websocket']}
 });
 
 requirejs(["js/app"], function() {
-    requirejs(["main"],function(bootstrap) {
+    requirejs(["client/js/main"],function(bootstrap) {
         bootstrap();
     });
 });

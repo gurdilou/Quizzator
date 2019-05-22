@@ -11,13 +11,15 @@
         "paths": {
             "*": [
                 "node_modules/*",
-                "server/types/*"
+                "server/types/*",
+                "client/js/types/*"
             ]
         },
         //to please IntelliJ
         "jsx": "react"
     },
     "include": [
-        "server/**/*"
+        "server/**/*",
+        "model/**/*"
     ]
 }

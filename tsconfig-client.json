@@ -8,9 +8,16 @@
         "sourceMap": true,
         "outFile": "dist/public/js/app.js",
         "baseUrl": ".",
-        "jsx": "react"
+        "jsx": "react",
+        "paths": {
+            "*": [
+                "node_modules/*",
+                "client/js/types/*"
+            ]
+        }
     },
     "include": [
-        "client/js/"
+        "server/shared/**/*",
+        "client/js/**/*"
     ]
 }

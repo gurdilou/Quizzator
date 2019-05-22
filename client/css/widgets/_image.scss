@@ -1,0 +1,15 @@
+$image-size: 150px;
+
+.round-image {
+  border-radius: 50%;
+  box-shadow: 2px 2px 1px transparentize(black, 0.8);
+  height: $image-size;
+  width: $image-size;
+  object-fit: cover;
+}
+
+.square-image {
+  height: $image-size;
+  width: $image-size;
+  object-fit: cover;
+}

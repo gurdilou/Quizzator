@@ -23,13 +23,15 @@
     "copy-static-assets": "npx r.js -o bundle-libs.js && node copyStaticAssets.js",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/server.js",
-    "watch-debug": "npm run copy-static-assets && concurrently -k -p \"[{name}]\" -n \"Sass,Server,Client,Node\" -c \"yellow.bold,cyan.bold, blue.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-ts-client\" \"npm run serve-debug\""
+    "watch-debug": "npm run copy-static-assets && concurrently -k -p \"[{name}]\" -n \"Sass,Server,Client,Node\" -c \"yellow.bold,cyan.bold,blue.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-ts-client\" \"npm run serve-debug\"",
+    "compile-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,Server,Client\" -c \"yellow.bold,cyan.bold,green.bold\" 'npm run watch-sass' 'npm run watch-ts' 'npm run watch-ts-client'"
   },
   "aside": {
     "test": "jest --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll"
   },
   "dependencies": {
+    "@types/express-ws": "^3.0.0",
     "async": "^2.6.0",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.1",
@@ -42,6 +44,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
+    "express-ws": "^4.0.0",
     "fbgraph": "^1.4.1",
     "lodash": "^4.17.5",
     "lusca": "^1.5.2",
@@ -53,6 +56,7 @@
     "pug": "^2.0.0-rc.4",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
+    "uuid": "^3.3.2",
     "winston": "^2.4.0"
   },
   "devDependencies": {
@@ -85,11 +89,13 @@
     "@types/supertest": "^2.0.4",
     "chai": "^4.1.2",
     "concurrently": "^3.5.1",
+    "font-awesome": "4.7.0",
     "jest": "^22.0.4",
     "node-sass": "^4.7.2",
     "nodemon": "^1.13.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-websocket": "^2.0.1",
     "requirejs": "^2.3.6",
     "shelljs": "^0.8.1",
     "supertest": "^3.0.0",

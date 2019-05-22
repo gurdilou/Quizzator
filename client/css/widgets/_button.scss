@@ -1,0 +1,32 @@
+.fancy-button {
+  display: inline-flex;
+  border: 2px solid white;
+  background: $primary-bg;
+  box-shadow: 2px 5px 3px 0 transparentize(black, 0.8);
+  padding: 8px 20px;
+  color: white;
+  border-radius: 12px;
+  font-size: 120%;
+  font-family: "ConcertOne", "Ubuntu", sans-serif;
+  cursor: pointer;
+
+  &[disabled] {
+    cursor: default;
+    background: transparentize($primary-bg, 0.3);
+    color: #e5e5e5;
+  }
+
+  &-center {
+    align-self: center;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    outline: none;
+    margin-top: 2px;
+    box-shadow: 2px 2px 3px 0 #AAA;
+  }
+}
