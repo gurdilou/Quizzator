@@ -7,13 +7,13 @@
   color: white;
   border-radius: 12px;
   font-size: 120%;
-  font-family: "ConcertOne", "Ubuntu", sans-serif;
+  font-family: $fancyFont;
   cursor: pointer;
 
   &[disabled] {
     cursor: default;
     background: transparentize($primary-bg, 0.3);
-    color: #e5e5e5;
+    color: #f4f4f4;
   }
 
   &-center {

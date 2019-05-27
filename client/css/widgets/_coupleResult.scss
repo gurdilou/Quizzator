@@ -1,0 +1,10 @@
+.couple-result {
+  display: flex;
+  flex-direction: column;
+
+  &-is-with {
+    font-size: 150%;
+    color: #DB132F;
+    margin: 30px;
+  }
+}

@@ -29,13 +29,13 @@ export class QuestionForm extends React.Component<QuestionForm.Props, QuestionFo
     render(): React.ReactNode {
         return (
             <form onSubmit={(event) => {
-                if(this.props.onVote) {
-                    this.props.onVote(this.state.vote);
-                }
-                event.preventDefault();
-                event.stopPropagation();
-            }}
-                  className="voter-form"
+                    if (this.props.onVote) {
+                        this.props.onVote(this.state.vote);
+                    }
+                    event.preventDefault();
+                    event.stopPropagation();
+                }}
+                className="voter-form"
             >
 
                 {this.props.question.choices.map((item: Choice) => {
@@ -44,22 +44,23 @@ export class QuestionForm extends React.Component<QuestionForm.Props, QuestionFo
                         hidden = (this.props.voted.id !== item.id);
                     }
                     let itemIsSelected = (item === this.state.vote) || (this.props.voted && item.id === this.props.voted.id);
+                    let onClickCallback = null;
+                    if (!this.props.voted) {
+                        onClickCallback = () => {
+                            this.setState({
+                                vote: item
+                            });
+                        }
+                    }
                     return (
-                        <Card key={item.id} for={item.id} className={"voter-form-choice "} margin={!item.imageUrl}
-                              selected={itemIsSelected} hidden={hidden}>
+                        <Card key={item.id} className={"voter-form-choice"}
+                              selected={itemIsSelected}
+                              onClick={onClickCallback}
+                              hidden={hidden}>
                             {item.imageUrl && <SquareImage url={item.imageUrl}/>}
                             <span className="voter-form-choice-label">
-                                    {item.label}
-                                </span>
-                            <input id={item.id}
-                                   type="radio" value={item.id}
-                                   name="formChoicesName"
-                                   onClick={() => {
-                                       this.setState({
-                                           vote: item
-                                       });
-                                   }}
-                            />
+                                {item.label}
+                            </span>
                         </Card>
                     );
                 })}
@@ -68,7 +69,7 @@ export class QuestionForm extends React.Component<QuestionForm.Props, QuestionFo
                             disabled={(this.state.vote == null) || (this.props.voted != null)}
                             type="submit" align="center"/>
                     {this.props.voted &&
-                        <p>Les résultats seront bientôt affichés</p>
+                    <p>Les résultats seront bientôt affichés</p>
                     }
                 </div>
             </form>

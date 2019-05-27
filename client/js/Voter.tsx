@@ -1,7 +1,7 @@
 import * as React from "react";
 import Websocket from 'react-websocket';
 import {Choice, isQuestion, isResultToMegaQuestion, Question, ResultToQuestion} from "../../server/shared/Question";
-import {QuestionResultAnimated} from "./questionReports/QuestionResultAnimated";
+import {QuestionResult} from "./questionReports/QuestionResult";
 import {QuestionForm} from "./parts/QuestionForm";
 import {VoterInitMessage, VoterVote} from "../../server/shared/VoterMessageSend";
 import {
@@ -144,7 +144,7 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
                 config = {
                     title: isResultToMegaQuestion(this.state.result) ? "Résultat" : this.state.result.question.label,
                     content: (
-                        <QuestionResultAnimated votes={this.state.result}/>
+                        <QuestionResult votes={this.state.result}/>
                     )
                 };
                 break;
@@ -160,7 +160,7 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
 
         return (
             <PageStub title={config.title}>
-                <Websocket url='ws://localhost:3000/questions'
+                <Websocket url={Voter.computeWebSocketUrl()}
                            onMessage={this.handleData}
                            onOpen={() => {
                                this.refWebSocket.sendMessage(JSON.stringify({
@@ -183,5 +183,18 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
 
     private storeId() {
         sessionStorage.setItem("quiz-voter-id", this.id);
+    }
+
+    private static computeWebSocketUrl() {
+        let loc = window.location;
+        let webSocketUri;
+        if (loc.protocol === "https:") {
+            webSocketUri = "wss:";
+        } else {
+            webSocketUri = "ws:";
+        }
+        webSocketUri += "//" + loc.host;
+        webSocketUri += "/questions";
+        return webSocketUri;
     }
 }

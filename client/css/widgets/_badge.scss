@@ -1,0 +1,54 @@
+.rank-badge {
+  $max-width: 70px;
+  $max-border-width: 7px;
+  $badge-max-width: $max-width + 2*$max-border-width;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 5px transparentize(black, 0.8);
+  background: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-family: $fancyFont;
+  flex: none;
+  opacity: 1;
+  transition: opacity ease-out 750ms;
+
+  &-hidden {
+    opacity: 0;
+  }
+
+  @mixin rank($rank, $color, $badge-size, $border-width, $font-size) {
+    &-#{$rank} {
+      border: $border-width solid $color;
+      color: $color;
+      width: $badge-size;
+      height: $badge-size;
+      font-size: $font-size;
+      margin: 0 (20 + (  $badge-max-width - $badge-size - 2*$border-width)/2) 0 5px;
+
+      position: absolute;
+      top: 0;
+      left: ($badge-max-width - $badge-size - 2*$border-width)/2;
+      top: ($badge-max-width - $badge-size - 2*$border-width)/2;
+
+      &::after {
+        content: "#{$rank}";
+      }
+    }
+  }
+
+  @include rank(1, #fae114, $max-width, $max-border-width, 40px);
+  @include rank(2, #d1d1cf, 55px, 4px, 32px);
+  @include rank(3, #db9877, 45px, 4px, 22px);
+
+
+  &-container {
+    width: $badge-max-width;
+    height: $badge-max-width;
+    position: relative;
+    margin-right: 10px;
+    margin-left: 5px;
+  }
+}

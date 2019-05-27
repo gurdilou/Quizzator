@@ -2,8 +2,10 @@ import {Omit} from "./Utils";
 
 export type QuestionKind = Question | MegaQuestion;
 
+export type MegaQuestionAnimations = "couple";
 
 export interface Question {
+    key: string;
     label: string;
     choices: Choice[];
 }
@@ -13,7 +15,7 @@ export interface SingleQuestion extends Question {
 }
 export interface MegaQuestion{
     questions: Question[];
-    resultAnimation: "couple";
+    resultAnimation: MegaQuestionAnimations;
 }
 export let isMegaQuestion = (data: any): data is Question => {
     return data.hasOwnProperty("questions")
@@ -53,11 +55,13 @@ export interface ChoicePickupResult {
 export interface ResultToMegaQuestion {
     results: ResultToSingleQuestion[];
     finished: boolean;
+    resultAnimation: MegaQuestionAnimations;
 }
 
 export let isResultToMegaQuestion = (data: any): data is ResultToMegaQuestion => {
     return data.hasOwnProperty("results")
-        && data.hasOwnProperty("finished");
+        && data.hasOwnProperty("finished")
+        && data.hasOwnProperty("resultAnimation");
 };
 
 export interface ResultToSingleQuestion {

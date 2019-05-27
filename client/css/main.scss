@@ -4,6 +4,8 @@
 
 $text-color: #393939;
 $primary-bg: #42ad5a;
+$fancyFont: "ConcertOne", "Ubuntu", sans-serif;
+$mainFont: "Ubuntu", sans-serif;
 // Scaffolding
 // -------------------------
 
@@ -32,5 +34,8 @@ body {
 @import 'widgets/card';
 @import 'widgets/image';
 @import 'widgets/questionForm';
+@import 'widgets/questionResult';
+@import 'widgets/coupleResult';
+@import 'widgets/badge';
 @import 'pages/splash-screen';
 @import 'pages/admin-waiting-start';

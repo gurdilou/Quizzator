@@ -15,7 +15,8 @@ let gotQuestion: MegaQuestion = {
                     label: "Tyrion Lannister",
                     imageUrl: "images/TyrionLannister.jpg"
                 }
-            ]
+            ],
+            key: "gotpaul"
         },
         {
             label: "Quel personnage de Game of thrones serait  serait Pauline ?",
@@ -30,7 +31,8 @@ let gotQuestion: MegaQuestion = {
                     label: "Arya Stark",
                     imageUrl: "images/AryaStark.png"
                 }
-            ]
+            ],
+            key: "gotpauline"
         }
     ],
     resultAnimation: "couple"
@@ -53,7 +55,8 @@ let paulWasAMeal: SingleQuestion = {
             label: "Tant qu'il y a du fromage ça me va."
         }
     ],
-    resultAnimation: "top3"
+    resultAnimation: "top3",
+    key: "platpaul"
 };
 
 export let questions: QuestionKind[] = [

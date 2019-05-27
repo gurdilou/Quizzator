@@ -3,7 +3,7 @@ requirejs.config({
     paths: {
         'libs': 'js/lib/libs',
     },
-    bundles: {'libs': ['react', 'react-dom', 'react-websocket']}
+    bundles: {'libs': ['react', 'react-dom', 'react-websocket', 'moize']}
 });
 
 requirejs(["js/app"], function() {

@@ -7,7 +7,7 @@ import {
     ResultToSingleQuestion
 } from "../../server/shared/Question";
 import {Button} from "./widgets/Button";
-import {QuestionResultAnimated} from "./questionReports/QuestionResultAnimated";
+import {QuestionResult} from "./questionReports/QuestionResult";
 import {FinalReport} from "./questionReports/FinalReport";
 import {AdminGoToNextMessage, AdminInitEventMessage} from "../../server/shared/AdminMessageSend";
 import {
@@ -155,9 +155,10 @@ export class Admin extends React.Component<Admin.Props, Admin.State> {
                 config = {
                     title: this.getCurrentQuestionLabel(),
                     content: (
-                        <span>
-                            Vote en cours : {this.getCurrentQuestionResult().numberOfParticipants} votants.
-                        </span>
+                        <div>
+                            <h3>{this.getCurrentQuestionResult().numberOfParticipants} votants.</h3>
+                            <QuestionResult votes={this.state.onGoingResult}/>
+                        </div>
                     ),
                     buttonLabel: "Clore les votes."
                 };
@@ -166,7 +167,7 @@ export class Admin extends React.Component<Admin.Props, Admin.State> {
                 config = {
                     title: this.getCurrentQuestionLabel(),
                     content: (
-                        <QuestionResultAnimated votes={this.state.onGoingResult}/>
+                        <QuestionResult votes={this.state.onGoingResult}/>
                     ),
                     buttonLabel: "Nouvelle question"
                 };
@@ -193,7 +194,7 @@ export class Admin extends React.Component<Admin.Props, Admin.State> {
 
         return (
             <PageStub title={config.title}>
-                <Websocket url={'ws://localhost:3000/quizAdmin?secret=' + '6154'}
+                <Websocket url={this.computeWebSocketUrl()}
                             onOpen={() => {
                                 this.refWebSocket.sendMessage(JSON.stringify({type: "whatsup"} as AdminInitEventMessage));
                             }}
@@ -227,5 +228,18 @@ export class Admin extends React.Component<Admin.Props, Admin.State> {
         } else {
             return this.state.onGoingResult;
         }
+    }
+
+    private computeWebSocketUrl() {
+        let loc = window.location;
+        let webSocketUri;
+        if (loc.protocol === "https:") {
+            webSocketUri = "wss:";
+        } else {
+            webSocketUri = "ws:";
+        }
+        webSocketUri += "//" + loc.host;
+        webSocketUri += "/quizAdmin?secret=6154";
+        return webSocketUri;
     }
 }
