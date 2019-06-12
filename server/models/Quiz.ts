@@ -66,7 +66,8 @@ export class Quiz {
             this.currentMegaQuestion = {
                 ...nextQuestionKind as MegaQuestion,
                 results: [],
-                finished: false
+                finished: false,
+                resultAnimation: (nextQuestionKind as MegaQuestion).resultAnimation
             };
             this.currentQuestion = {
                 question: this.currentMegaQuestion.questions.splice(0, 1)[0],
@@ -141,7 +142,8 @@ export class Quiz {
 
                 let result = {
                     results: this.currentMegaQuestion.results,
-                    finished: true
+                    finished: true,
+                    resultAnimation: this.currentMegaQuestion.resultAnimation
                 } as ResultToMegaQuestion;
                 this.results.push(result);
                 this.currentMegaQuestion = null;
@@ -149,7 +151,8 @@ export class Quiz {
             } else {
                 return {
                     results: this.currentMegaQuestion.results,
-                    finished: false
+                    finished: false,
+                    resultAnimation: this.currentMegaQuestion.resultAnimation
                 } as ResultToMegaQuestion;
             }
         } else {
@@ -208,7 +211,7 @@ export class Quiz {
 
         // Sort question according to numbers of votes
         choiceVotesList.sort((a, b) => {
-            return (a.votes - b.votes);
+            return (b.votes - a.votes);
         });
 
         //Generate ranked results
@@ -224,6 +227,7 @@ export class Quiz {
                 currentRank++;
                 rankedResults[currentRank] = [];
             }
+            previousNumberOfVoters = answer.votes;
             rankedResults[currentRank].push(answer);
         }
 
