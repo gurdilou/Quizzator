@@ -3,14 +3,16 @@ import {Quiz} from "../models/Quiz";
 import {questions} from "./questions";
 import {VoterInitMessage, VoterMessageSend, VoterVote} from "../shared/VoterMessageSend";
 import {VoterError, VoterMessageReceive} from "../shared/VoterMessageReceive";
-import {AdminError, AdminMessageReceive} from "../shared/AdminMessageReceive";
-import {AdminMessageSend} from "../shared/AdminMessageSend";
+import {ViewerError, ViewerMessageReceive} from "../shared/ViewerMessageReceive";
 import {CommunicationChannels} from "./spec/CommunicationChannels";
 import {VoterVoteEvent} from "./events/VoterVoteEvent";
 import {VoterInitEvent} from "./events/VoterInitEvent";
 import {AdminNextEvent} from "./events/AdminNextEvent";
 import app from "../app";
-import {AdminInitEvent} from "./events/AdminInitEvent";
+import {ViewerInitEvent} from "./events/ViewerInitEvent";
+import {admin} from "./pageController";
+import {AdminGoToNextMessage} from "../shared/AdminMessageSend";
+import {ViewerWhatsUpMessage} from "../shared/ViewerMessageSend";
 
 const quiz = new Quiz(questions);
 
@@ -19,6 +21,7 @@ interface VoterMap {
 }
 
 let voters: VoterMap = {};
+let viewers: WebSocket[] = [];
 
 
 export let questionsController = (ws: WebSocket, req: express.Request, next: express.NextFunction) => {
@@ -56,40 +59,58 @@ export let questionsController = (ws: WebSocket, req: express.Request, next: exp
 };
 
 
-let adminSocket: WebSocket;
 export let adminController = (ws: WebSocket, req: express.Request, next: express.NextFunction) => {
     if (req.query["secret"] !== "6154") {
         next(new Error("You are not an admin."));
     }
 
     ws.onmessage = function (msg: MessageEvent): any {
-        adminSocket = this;
+        let adminSocket = this;
 
-        let data: AdminMessageSend = JSON.parse(msg.data);
+        let data: AdminGoToNextMessage | ViewerWhatsUpMessage = JSON.parse(msg.data);
         let exec: Promise<any>;
         switch (data.type) {
             case "whatsup":
-                exec = AdminInitEvent.handle(quiz, channels);
+                exec = ViewerInitEvent.handle(quiz, adminSocket, channels);
                 break;
             case "next":
                 exec = AdminNextEvent.handle(quiz, channels);
                 break;
             default:
-                channels.sendMessageToAdmin({
+                channels.sendMessageToSingleViewer({
                     type: "error",
                     msg: "Message inconu"
-                } as AdminError);
+                } as ViewerError, adminSocket);
         }
 
         exec.then(() => {
             console.log("[Admin] message processed : " + data.type);
         }).catch(err => {
             console.error(err);
-            channels.sendMessageToAdmin({
+            channels.sendMessageToSingleViewer({
                 type: "error",
                 msg: "Quelque chose a planté, veuillez rafraîchir la page.",
                 error: app.get('env') === 'development' ? JSON.stringify(err) : null
-            } as AdminError);
+            } as ViewerError, adminSocket);
+        });
+    };
+    next();
+};
+
+export let viewerController = (ws: WebSocket, req: express.Request, next: express.NextFunction) => {
+    ws.onmessage = function (msg: MessageEvent): any {
+        let data: ViewerWhatsUpMessage = JSON.parse(msg.data);
+        let exec = ViewerInitEvent.handle(quiz, this, channels);
+
+        exec.then(() => {
+            console.log("[Viewer] message processed : " + data.type);
+        }).catch(err => {
+            console.error(err);
+            channels.sendMessageToSingleVoter({
+                type: "error",
+                msg: "Quelque chose a planté, veuillez rafraîchir la page.",
+                error: app.get('env') === 'development' ? JSON.stringify(err) : null
+            } as ViewerError, this);
         });
     };
     next();
@@ -114,15 +135,25 @@ const channels: CommunicationChannels = {
             delete voters[clientDisconnectedId];
         }
     },
-    sendMessageToAdmin: (data: AdminMessageReceive) => {
-        if (adminSocket) {
+    sendMessageToAllViewers: (data: ViewerMessageReceive) => {
+        viewers = viewers.filter(socket => {
             try {
-                adminSocket.send(JSON.stringify(data));
+                socket.send(JSON.stringify(data));
             } catch (e) {
-                console.error("Failed to communicate with admin.");
+                return false;
             }
+            return true;
+        });
+    },
+
+    sendMessageToSingleViewer: (data: ViewerMessageReceive, viewer: WebSocket) => {
+        try {
+            viewer.send(JSON.stringify(data));
+        } catch (e) {
+            console.error("Failed to communicate with viewer.");
         }
     },
+
     sendMessageToSingleVoter: (data: VoterMessageReceive, socket: WebSocket) => {
         try {
             socket.send(JSON.stringify(data));
@@ -133,6 +164,9 @@ const channels: CommunicationChannels = {
 
     registerNewVoter: (voterSocket: WebSocket, clientId: string) => {
         voters[clientId] = voterSocket;
+    },
+    registerNewViewer: (viewerSocket: WebSocket) => {
+        viewers.push(viewerSocket);
     },
 
     getNumberOfVoters: () => {

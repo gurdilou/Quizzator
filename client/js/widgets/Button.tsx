@@ -7,7 +7,7 @@ export namespace Button {
         loading?: boolean;
         type?: "button" | "submit";
         disabled?: boolean;
-        align?: "center";
+        alignSelf?: "center";
     }
 }
 
@@ -21,7 +21,7 @@ export class Button extends React.Component<Button.Props> {
         // TODO tlu : animate & co.
         return (
             <button
-                className={"fancy-button " + (this.props.align ? "fancy-button-"+this.props.align : "")}
+                className={"fancy-button " + (this.props.alignSelf ? "fancy-button-"+this.props.alignSelf : "")}
                 type={this.props.type ? this.props.type : "button"}
                 onClick={this.props.onClick} disabled={this.props.disabled}>
                 {this.props.loading ? "loading...." : this.props.label}

@@ -13,12 +13,10 @@ import {
 } from "../shared/Question";
 import {QuizState} from "../shared/QuizState";
 
-// TODO tlu : clear questions kinds
-// Remove choice id require
-
-
+// TODO tlu Remove choice id require
 export class Quiz {
     private results: ResultToQuestion[] = [];
+    private closed: boolean = false;
 
     private currentMegaQuestion: MegaQuestion & ResultToMegaQuestion;
     private currentQuestion: {
@@ -145,7 +143,7 @@ export class Quiz {
                     results: this.currentMegaQuestion.results,
                     finished: true
                 } as ResultToMegaQuestion;
-                this.results.push(questionResult);
+                this.results.push(result);
                 this.currentMegaQuestion = null;
                 return result;
             } else {
@@ -179,22 +177,22 @@ export class Quiz {
             return this.currentQuestion.question;
         } else {
             if (this.results.length) {
-                if (this.questions.length) {
-                    return this.results[this.results.length - 1];
-                } else {
-                    return this.getFinalReport();
-                }
+                return this.results[this.results.length - 1];
             } else {
                 return "waitingForQuizStart";
             }
         }
     }
 
+    public isCurrentQuestionAMegaQuestion(): boolean {
+        return this.currentMegaQuestion != null;
+    }
+
     /**
      * Compute results...
      */
     public getCurrentSingleQuestionResult(): ResultToSingleQuestion {
-        if(!this.currentQuestion) {
+        if (!this.currentQuestion) {
             return null;
         }
 
@@ -237,6 +235,14 @@ export class Quiz {
             numberOfParticipants,
             votes: this.currentQuestion.votes
         };
+    }
+
+    public end() {
+        this.closed = true;
+    }
+
+    public isClosed() {
+        return this.closed;
     }
 }
 

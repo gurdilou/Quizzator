@@ -1,8 +1,6 @@
 import {Choice, Question, ResultToQuestion, VoterAnswer} from "./Question";
 import {QuizState} from "./QuizState";
 
-// TODO tlu : differentiate sender receiver
-
 export interface VoterMessageReceive {
     type: "newQuestion" | "result" | "id" | "error" | "resume";
 }
@@ -26,7 +24,7 @@ export interface VoterQuizResultMessage extends VoterMessageReceive {
 export interface VoterIdMessage extends VoterMessageReceive {
     type: "id";
     id: string;
-    currentState: QuizState;
+    currentState: QuizState | ResultToQuestion[];
     voterAnswer?: Choice;
 }
 export interface VoterError extends VoterMessageReceive {

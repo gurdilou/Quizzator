@@ -1,0 +1,139 @@
+.couple-result {
+  display: flex;
+  flex-direction: column;
+
+  @mixin appearOnYTranslate() {
+    animation-name: top-result-appear;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+  }
+
+  &-top {
+    $label-picture-offset: -19px;
+
+    display: flex;
+    flex-direction: row;
+    margin: 30px 0 40px;
+
+    &-left,
+    &-right {
+      flex: auto;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      padding-top: 3px;
+      opacity: 0;
+      transform: translateY(-100%);
+
+      &-label {
+        margin-top: 10px;
+        font-size: 130%;
+        font-family: $fancyFont;
+      }
+    }
+
+    &-left {
+      align-items: flex-end;
+
+      &-label {
+        margin-right: $label-picture-offset;
+      }
+    }
+
+    &-right {
+      align-items: flex-start;
+
+      &-label {
+        margin-left: $label-picture-offset;
+      }
+    }
+
+    &-heart {
+      margin: 0 -30px;
+      z-index: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-icon {
+        font-size: 125px;
+        color: #d64e4c;
+        vertical-align: 12px;
+        text-shadow: 0 7px 3px rgba(255, 255, 255, 0.41);
+
+        &-bump {
+          animation-name: heart-bump;
+          animation-duration: 1250ms;
+          animation-iteration-count: 1;
+          animation-timing-function: ease-out;
+          animation-delay: 2s;
+
+          @keyframes heart-bump {
+            0% {
+              transform: scale(1);
+            }
+            30% {
+              transform: scale(1.3);
+            }
+            50% {
+              transform: scale(1.2);
+            }
+            80% {
+              transform: scale(1.4);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+      }
+
+      &-separator {
+        position: absolute;
+        bottom: 0;
+        font-size: 130%;
+        font-family: $fancyFont;
+
+        @include appearOnYTranslate();
+      }
+    }
+  }
+
+  &-equals {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
+    &-label {
+      font-weight: bold;
+      font-size: 130%;
+    }
+  }
+
+  &-displayed .couple-result-top {
+    &-left, &-right {
+      @include appearOnYTranslate();
+    }
+
+    &-right {
+      animation-delay: 1s;
+    }
+  }
+
+  @keyframes top-result-appear {
+    0% {
+      opacity: 0;
+      transform: translateY(-70%)
+    }
+    30% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

@@ -9,11 +9,13 @@ import {
     VoterIdMessage,
     VoterMessageReceive,
     VoterNewQuestion,
-    VoterQuestionResult
+    VoterQuestionResult,
+    VoterQuizResultMessage
 } from "../../server/shared/VoterMessageReceive";
 import {ErrorWidget} from "./parts/ErrorWidget";
 import {SocketError} from "./spec/SocketError";
 import {PageStub} from "./widgets/PageStub";
+import {FinalReport} from "./questionReports/FinalReport";
 
 export namespace Voter {
     export interface Props {
@@ -21,10 +23,11 @@ export namespace Voter {
     }
 
     export interface State {
-        show: "splash" | "question" | "result" | "error";
+        show: "splash" | "question" | "result" | "error" | "resume";
         question: Question;
         vote: Choice;
         result: ResultToQuestion;
+        resume: ResultToQuestion[];
         error: SocketError;
     }
 }
@@ -42,7 +45,8 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
             question: null,
             vote: null,
             result: null,
-            error: null
+            error: null,
+            resume: null
         }
     }
 
@@ -77,7 +81,15 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
                         vote: idMsg.voterAnswer,
                         result: null
                     });
-                } else if (!Array.isArray(idMsg.currentState) && (idMsg.currentState !== "waitingForQuizStart")) {
+                } else if (Array.isArray(idMsg.currentState)) {
+                    this.setState({
+                        show: "resume",
+                        question: null,
+                        vote: null,
+                        result: null,
+                        resume: idMsg.currentState
+                    });
+                } else if (idMsg.currentState !== "waitingForQuizStart") {
                     this.setState({
                         show: "result",
                         question: null,
@@ -92,6 +104,15 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
                     question: null,
                     result: null,
                     error: {...data as VoterError}
+                });
+                break;
+            case "resume":
+                this.setState({
+                    show: "resume",
+                    question: null,
+                    vote: null,
+                    result: null,
+                    resume: {...data as VoterQuizResultMessage}.resume
                 });
                 break;
             default:
@@ -136,7 +157,8 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
                 config = {
                     title: this.state.question.label,
                     content: (
-                        <QuestionForm question={this.state.question} onVote={!this.state.vote ? this.onVote : null} voted={this.state.vote}/>
+                        <QuestionForm question={this.state.question} onVote={!this.state.vote ? this.onVote : null}
+                                      voted={this.state.vote}/>
                     )
                 };
                 break;
@@ -156,6 +178,13 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
                     )
                 };
                 break;
+            case "resume":
+                config = {
+                    title: "Merci d'avoir joué !",
+                    content: (
+                        <FinalReport report={this.state.resume}/>
+                    )
+                }
         }
 
         return (

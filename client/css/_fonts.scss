@@ -1,9 +1,13 @@
 @font-face {
   font-family: "Ubuntu";
-  src: url("/fonts/Ubuntu/Ubuntu-Regular.ttf") format("ttf");
+  src: url("/fonts/Ubuntu/Ubuntu-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: "ConcertOne";
-  src: url("/fonts/Concert_One/ConcertOne-Regular.ttf") format("ttf");
+  src: url("/fonts/Concert_One/ConcertOne-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
 }

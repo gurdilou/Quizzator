@@ -1,14 +1,19 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {Voter} from "./Voter";
-import {Admin} from "./Admin";
+import {Viewer} from "./Viewer";
 
 
 let bootstrap = () => {
-    if((window as any)["admin"] === true) {
-        ReactDOM.render(<Admin/>, document.getElementById("app"));
-    }else {
-        ReactDOM.render(<Voter/>, document.getElementById("app"));
+    switch((window as any)["role"]) {
+        case "admin":
+            ReactDOM.render(<Viewer isAdmin/>, document.getElementById("app"));
+            break;
+        case "viewer":
+            ReactDOM.render(<Viewer/>, document.getElementById("app"));
+            break;
+        default:
+            ReactDOM.render(<Voter/>, document.getElementById("app"));
     }
 };
 

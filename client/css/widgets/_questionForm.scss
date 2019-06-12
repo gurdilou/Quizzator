@@ -3,11 +3,11 @@
   flex-direction: column;
 
   &-choice {
-    padding-right: 10px;
-
     &-label {
       flex: auto;
       margin: 0 10px;
+      overflow: hidden;
+      max-height: 3.5em;
     }
   }
 

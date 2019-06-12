@@ -1,6 +1,4 @@
-import * as express from "express";
 import {Request, Response} from "express";
-import * as ws from 'ws';
 
 /**
  * GET /
@@ -8,13 +6,19 @@ import * as ws from 'ws';
  */
 export let voter = (req: Request, res: Response) => {
     res.render("home", {
-        title: "Quizz Paul et Pauline",
+        title: "Quiz Paul et Pauline",
     });
 };
 
 export let admin = (req: Request, res: Response) => {
     res.render("admin", {
-        title: "Admin - Quizz Paul et Pauline",
+        title: "Admin - Quiz Paul et Pauline",
+    });
+};
+
+export let viewer = (req: Request, res: Response) => {
+    res.render("viewer", {
+        title: "Quiz Paul et Pauline",
     });
 };
 

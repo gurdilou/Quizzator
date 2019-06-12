@@ -92,9 +92,13 @@ app.use(
  */
 app.get("/", pageController.voter);
 app.get("/admin", pageController.admin);
+app.get("/viewer", pageController.viewer);
 // app.get("/admin", .index);
 app.ws('/questions', (ws: ws, req: express.Request, next: express.NextFunction) => {
     questionsController.questionsController(ws as any, req, next);
+});
+app.ws('/quizViewer', (ws: ws, req: express.Request, next: express.NextFunction) => {
+    questionsController.viewerController(ws as any, req, next);
 });
 app.ws('/quizAdmin', (ws: ws, req: express.Request, next: express.NextFunction) => {
     questionsController.adminController(ws as any, req, next);

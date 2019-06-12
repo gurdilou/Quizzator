@@ -1,3 +1,5 @@
+$card-height: 100px;
+
 .card {
   $bg-transparency: 0.4;
 
@@ -10,8 +12,8 @@
   overflow: hidden;
   margin: 10px 5px;
   opacity: 1;
-  transition: height 700ms ease-out, opacity 500ms ease-in, top ease-out 1s;
-  height: 100px;
+  transition: height 500ms ease-out, opacity 500ms ease-in, top ease-out 1s;
+  height: $card-height;
 
   &-can-be-selected {
     cursor: pointer;

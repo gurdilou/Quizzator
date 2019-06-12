@@ -1,0 +1,73 @@
+.viewer {
+  &-waiting-start {
+    margin: 30px;
+    align-self: center;
+
+    &-counter {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+
+      &-icon {
+        color: $primary-bg;
+        margin-right: 5px;
+      }
+
+      &-label {
+        font-size: 110%;
+      }
+    }
+
+    &-hint {
+      font-style: italic;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $hint-text-color;
+
+      &-label {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &-voter-count {
+    align-self: center;
+    font-size: 110%;
+    margin: 10px 0;
+    color: $hint-text-color;
+
+    &-icon {
+      margin-right: 5px;
+    }
+  }
+
+  &-result {
+    display: flex;
+    flex-direction: column;
+
+    &-fill {
+      flex: auto;
+    }
+
+
+    &-secret {
+      align-self: center;
+      flex: auto;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &-icon {
+        color: transparentize($hint-text-color, 0.5);
+      }
+
+      &-label {
+        margin-top: 20px;
+        font-style: italic;
+      }
+    }
+  }
+}

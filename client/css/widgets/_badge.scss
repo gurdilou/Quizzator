@@ -1,54 +1,60 @@
+$badge-max-width: 50px;
+$badge-max-border-width: 4px;
+$badge-max-offset-width: $badge-max-width + 2*$badge-max-border-width;
 .rank-badge {
-  $max-width: 70px;
-  $max-border-width: 7px;
-  $badge-max-width: $max-width + 2*$max-border-width;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 4px 4px 5px transparentize(black, 0.8);
+  box-shadow: 4px 1px 5px transparentize(black, 0.8);
   background: white;
   border-radius: 50%;
   font-weight: bold;
-  font-family: $fancyFont;
   flex: none;
   opacity: 1;
   transition: opacity ease-out 750ms;
+
+  $break1: 55%;
+  $break2: 80%;
+  $badge-reflect-bg: rgba(255, 255, 255, 0.40);
+  background-image: linear-gradient(120deg, transparent, transparent $break1, $badge-reflect-bg $break1, $badge-reflect-bg $break2, transparent $break2, transparent);
+
 
   &-hidden {
     opacity: 0;
   }
 
-  @mixin rank($rank, $color, $badge-size, $border-width, $font-size) {
+  @mixin rank($rank, $primary, $secondary, $badge-size, $border-width, $font-size) {
     &-#{$rank} {
-      border: $border-width solid $color;
-      color: $color;
+      border: $border-width solid $primary;
+      background-color: $secondary;
+      color: white;
       width: $badge-size;
       height: $badge-size;
       font-size: $font-size;
-      margin: 0 (20 + (  $badge-max-width - $badge-size - 2*$border-width)/2) 0 5px;
+      margin: 0 (20 + (  $badge-max-offset-width - $badge-size - 2*$border-width)/2) 0 5px;
+      background-size: $badge-size $badge-size;
 
       position: absolute;
-      top: 0;
-      left: ($badge-max-width - $badge-size - 2*$border-width)/2;
-      top: ($badge-max-width - $badge-size - 2*$border-width)/2;
+      left: ($badge-max-offset-width - $badge-size - 2*$border-width)/2;
+      top: ($badge-max-offset-width - $badge-size - 2*$border-width)/2;
 
       &::after {
         content: "#{$rank}";
+        text-shadow: 1px 1px 2px #464646;
       }
     }
   }
 
-  @include rank(1, #fae114, $max-width, $max-border-width, 40px);
-  @include rank(2, #d1d1cf, 55px, 4px, 32px);
-  @include rank(3, #db9877, 45px, 4px, 22px);
+  @include rank(1, #a57b1c, #eecc0e, $badge-max-width, $badge-max-border-width, 30px);
+  @include rank(2, #939392, #bfbfbd, 40px, $badge-max-border-width, 24px);
+  @include rank(3, #d17154, #db9877, 40px, $badge-max-border-width, 24px);
 
 
   &-container {
-    width: $badge-max-width;
-    height: $badge-max-width;
+    width: $badge-max-offset-width;
+    height: $badge-max-offset-width;
     position: relative;
     margin-right: 10px;
-    margin-left: 5px;
   }
 }

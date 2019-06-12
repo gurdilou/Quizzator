@@ -3,9 +3,10 @@
 //@import "themes/default/default";
 
 $text-color: #393939;
+$hint-text-color: lighten($text-color, 10);
 $primary-bg: #42ad5a;
-$fancyFont: "ConcertOne", "Ubuntu", sans-serif;
-$mainFont: "Ubuntu", sans-serif;
+$fancyFont: ConcertOne, Ubuntu, sans-serif;
+$mainFont: Ubuntu, sans-serif;
 // Scaffolding
 // -------------------------
 
@@ -33,9 +34,11 @@ body {
 @import 'widgets/button';
 @import 'widgets/card';
 @import 'widgets/image';
+@import 'widgets/badge';
 @import 'widgets/questionForm';
 @import 'widgets/questionResult';
-@import 'widgets/coupleResult';
-@import 'widgets/badge';
+@import 'widgets/couple-result';
+@import 'widgets/finalReport';
+@import 'widgets/progress-bar';
 @import 'pages/splash-screen';
-@import 'pages/admin-waiting-start';
+@import 'pages/viewer';

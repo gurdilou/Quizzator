@@ -58,6 +58,14 @@ export interface ResultToMegaQuestion {
     resultAnimation: MegaQuestionAnimations;
 }
 
+
+export let isResultToSingleQuestion = (data: any): data is ResultToSingleQuestion => {
+    return data.hasOwnProperty("question")
+        && data.hasOwnProperty("rankedResults")
+        && data.hasOwnProperty("numberOfParticipants")
+        && data.hasOwnProperty("votes");
+};
+
 export let isResultToMegaQuestion = (data: any): data is ResultToMegaQuestion => {
     return data.hasOwnProperty("results")
         && data.hasOwnProperty("finished")

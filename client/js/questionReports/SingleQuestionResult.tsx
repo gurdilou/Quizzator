@@ -3,6 +3,7 @@ import {ChoicePickupResult, isResultToMegaQuestion, ResultToQuestion} from "../.
 import {Card} from "../widgets/Card";
 import {SquareImage} from "../widgets/SquareImage";
 import {RankBadge} from "../widgets/Badge";
+import {ProgressBar} from "../widgets/ProgressBar";
 
 
 const cardHeight = 130;
@@ -56,12 +57,19 @@ export class SingleQuestionResult extends React.Component<SingleQuestionResult.P
             <Card className="question-result-card" hidden={false} selected={false}
                   top={props.rankedResult.top} zIndex={1000 - props.rankedResult.rank}>
                 {choice.imageUrl && <SquareImage url={choice.imageUrl}/>}
-                <span className="voter-form-choice-label">
-                                {choice.label}
-                                </span>
-                {props.rankedResult.rank <= 3 &&
-                <RankBadge rank={props.rankedResult.rank}/>
-                }
+                <div className="question-result-choice">
+                    <div className="question-result-choice-label">
+                        <span className="question-result-choice-label-text">
+                            {choice.label}
+                        </span>
+                        {props.rankedResult.rank <= 3 &&
+                        <div className="question-result-choice-label-badge">
+                            <RankBadge rank={props.rankedResult.rank}/>
+                        </div>
+                        }
+                    </div>
+                    <ProgressBar percent={props.rankedResult.choice.percentage * 100}/>
+                </div>
             </Card>
         )
     };

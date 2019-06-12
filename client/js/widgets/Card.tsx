@@ -5,8 +5,8 @@ export namespace Card {
     export interface Props {
         onClick?: () => void;
         className?: string
-        selected: boolean;
-        hidden: boolean;
+        selected?: boolean;
+        hidden?: boolean;
         top?: number;
         zIndex?: number;
     }

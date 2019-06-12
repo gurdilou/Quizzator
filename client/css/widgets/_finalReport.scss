@@ -1,0 +1,52 @@
+.final-report {
+  &-intro,
+  &-outro {
+    margin: 10px 5px 5px;
+    font-weight: bold;
+    font-size: 110%;
+    align-self: center;
+  }
+
+  &-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px;
+    padding: 0 5px;
+
+    &-index {
+      $shadow: 3px 4px 2px transparentize($text-color, 0.5);
+
+      display: flex;
+      align-items: center;
+
+      &-badge {
+        font-size: 120%;
+        font-weight: bold;
+        margin-right: 5px;
+        text-shadow: $shadow;
+      }
+
+      &-rule {
+        flex: auto;
+        height: 2px;
+        background-color: lighten($text-color, 20%);
+        border: none;
+        box-shadow: $shadow;
+      }
+    }
+
+    &-question-label {
+      font-style: italic;
+      margin: 5px;
+    }
+
+    &-result {
+      margin: 5px 0;
+
+      &-label {
+        margin: 0 5px;
+      }
+    }
+  }
+}

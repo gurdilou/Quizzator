@@ -58,16 +58,18 @@ export class QuestionForm extends React.Component<QuestionForm.Props, QuestionFo
                               onClick={onClickCallback}
                               hidden={hidden}>
                             {item.imageUrl && <SquareImage url={item.imageUrl}/>}
-                            <span className="voter-form-choice-label">
-                                {item.label}
-                            </span>
+                            <div className="voter-form-choice-label">
+                                <span className="voter-form-choice-label-text">
+                                    {item.label}
+                                </span>
+                            </div>
                         </Card>
                     );
                 })}
                 <div className={"voter-form-footer"}>
                     <Button label={this.props.voted ? "Merci d'avoir voté" : "Voter"}
                             disabled={(this.state.vote == null) || (this.props.voted != null)}
-                            type="submit" align="center"/>
+                            type="submit" alignSelf="center"/>
                     {this.props.voted &&
                     <p>Les résultats seront bientôt affichés</p>
                     }

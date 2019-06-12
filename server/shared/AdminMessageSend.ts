@@ -1,13 +1,3 @@
-import {Question, ResultToQuestion, ResultToSingleQuestion} from "./Question";
-
-export interface AdminMessageSend {
-    type: "next" | "whatsup";
-}
-
-export interface AdminGoToNextMessage extends AdminMessageSend {
+export interface AdminGoToNextMessage {
     type: "next";
-}
-
-export interface AdminInitEventMessage extends AdminMessageSend {
-    type: "whatsup";
 }

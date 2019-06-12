@@ -2,4 +2,26 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
+  &-choice {
+    flex: auto;
+    padding: 0 10px;
+
+    &-label {
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+
+      &-text {
+        max-height: 3.5em;
+        flex: auto;
+        overflow: hidden;
+      }
+
+      &-badge {
+        flex: none;
+        min-width: 20px;
+      }
+    }
+  }
 }

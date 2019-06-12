@@ -7,13 +7,13 @@ let gotQuestion: MegaQuestion = {
             choices: [
                 {
                     id: "js",
-                    label: "John snow",
-                    imageUrl: "images/JohnSnow.jpg"
+                    label: "John Snow",
+                    imageUrl: "images/JohnSnow_low.jpg"
                 },
                 {
                     id: "tl",
                     label: "Tyrion Lannister",
-                    imageUrl: "images/TyrionLannister.jpg"
+                    imageUrl: "images/TyrionLannister_low.jpg"
                 }
             ],
             key: "gotpaul"
@@ -24,12 +24,12 @@ let gotQuestion: MegaQuestion = {
                 {
                     id: "dt",
                     label: "Daenerys Targaryen",
-                    imageUrl: "images/DaenerysTargaryen.png"
+                    imageUrl: "images/DaenerysTargaryen_low.png"
                 },
                 {
                     id: "as",
                     label: "Arya Stark",
-                    imageUrl: "images/AryaStark.png"
+                    imageUrl: "images/AryaStark_low.png"
                 }
             ],
             key: "gotpauline"
@@ -44,7 +44,7 @@ let paulWasAMeal: SingleQuestion = {
         {
             id: "01",
             label: "Fromage saucisson, même au lit",
-            imageUrl: "images/karadoc.jpg"
+            imageUrl: "images/karadoc_low.jpg"
         },
         {
             id: "02",
