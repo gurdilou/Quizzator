@@ -17,9 +17,11 @@ export class MegaQuestionResult extends React.Component<MegaQuestionResult.Props
     render(): React.ReactNode {
         // noinspection JSRedundantSwitchStatement
         switch (this.props.votes.resultAnimation) {
-            case "couple":
+            case "couple-plus":
+            case "couple-heart":
                 return (
-                    <CoupleResult left={this.props.votes.results[0]} right={this.props.votes.results[1]}/>
+                    <CoupleResult left={this.props.votes.results[0]} right={this.props.votes.results[1]}
+                                  animation={this.props.votes.resultAnimation}/>
                 );
         }
     }

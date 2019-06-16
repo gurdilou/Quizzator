@@ -2,12 +2,12 @@ $badge-max-width: 50px;
 $badge-max-border-width: 4px;
 $badge-max-offset-width: $badge-max-width + 2*$badge-max-border-width;
 .rank-badge {
+  $shadow-blur: 5px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 4px 1px 5px transparentize(black, 0.8);
-  background: white;
   border-radius: 50%;
   font-weight: bold;
   flex: none;
@@ -17,7 +17,7 @@ $badge-max-offset-width: $badge-max-width + 2*$badge-max-border-width;
   $break1: 55%;
   $break2: 80%;
   $badge-reflect-bg: rgba(255, 255, 255, 0.40);
-  background-image: linear-gradient(120deg, transparent, transparent $break1, $badge-reflect-bg $break1, $badge-reflect-bg $break2, transparent $break2, transparent);
+  background: white linear-gradient(120deg, transparent, transparent $break1, $badge-reflect-bg $break1, $badge-reflect-bg $break2, transparent $break2, transparent);
 
 
   &-hidden {
@@ -32,7 +32,7 @@ $badge-max-offset-width: $badge-max-width + 2*$badge-max-border-width;
       width: $badge-size;
       height: $badge-size;
       font-size: $font-size;
-      margin: 0 (20 + (  $badge-max-offset-width - $badge-size - 2*$border-width)/2) 0 5px;
+      margin: 0 (($badge-max-offset-width - $badge-size - 2*$border-width)/2) 0 5px;
       background-size: $badge-size $badge-size;
 
       position: absolute;
@@ -55,6 +55,6 @@ $badge-max-offset-width: $badge-max-width + 2*$badge-max-border-width;
     width: $badge-max-offset-width;
     height: $badge-max-offset-width;
     position: relative;
-    margin-right: 10px;
+    margin-right: $shadow-blur;
   }
 }

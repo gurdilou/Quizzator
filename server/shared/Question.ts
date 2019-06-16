@@ -2,22 +2,23 @@ import {Omit} from "./Utils";
 
 export type QuestionKind = Question | MegaQuestion;
 
-export type MegaQuestionAnimations = "couple";
+export type MegaQuestionAnimations = "couple-heart" | "couple-plus" ;
+export type SingleQuestionAnimations = "top3";
 
 export interface Question {
-    key: string;
+    key?: string;
     label: string;
     choices: Choice[];
 }
 
 export interface SingleQuestion extends Question {
-    resultAnimation: "top3" | "top1";
+    resultAnimation: SingleQuestionAnimations;
 }
 export interface MegaQuestion{
     questions: Question[];
     resultAnimation: MegaQuestionAnimations;
 }
-export let isMegaQuestion = (data: any): data is Question => {
+export let isMegaQuestion = (data: any): data is MegaQuestion => {
     return data.hasOwnProperty("questions")
         && data.hasOwnProperty("resultAnimation");
 };
@@ -33,7 +34,7 @@ export let isSingleQuestion = (data: any): data is SingleQuestion => {
 };
 
 export interface Choice {
-    id: string;
+    id?: string;
     label: string;
     imageUrl?: string;
 }

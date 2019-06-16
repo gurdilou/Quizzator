@@ -2,7 +2,8 @@
   $title-bg: #42ad5a;
   position: sticky;
   top: 0;
-  z-index: 1;
+  // TODO tlu : ugly, have a clean z-index system for votes animation
+  z-index: 1000;
 
   &-header {
     background: $title-bg;

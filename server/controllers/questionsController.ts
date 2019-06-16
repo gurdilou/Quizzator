@@ -10,7 +10,6 @@ import {VoterInitEvent} from "./events/VoterInitEvent";
 import {AdminNextEvent} from "./events/AdminNextEvent";
 import app from "../app";
 import {ViewerInitEvent} from "./events/ViewerInitEvent";
-import {admin} from "./pageController";
 import {AdminGoToNextMessage} from "../shared/AdminMessageSend";
 import {ViewerWhatsUpMessage} from "../shared/ViewerMessageSend";
 

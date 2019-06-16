@@ -1,17 +1,24 @@
 .couple-result {
+  $translate-duration: 800ms;
+
   display: flex;
   flex-direction: column;
 
   @mixin appearOnYTranslate() {
     animation-name: top-result-appear;
-    animation-duration: 1s;
+    animation-duration: $translate-duration;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
   }
 
   &-top {
-    $label-picture-offset: -19px;
+    $label-picture-offset: -10px;
+    @mixin topLabelFont() {
+      margin-top: 10px;
+      font-size: 120%;
+      font-family: $fancyFont;
+    }
 
     display: flex;
     flex-direction: row;
@@ -28,9 +35,7 @@
       transform: translateY(-100%);
 
       &-label {
-        margin-top: 10px;
-        font-size: 130%;
-        font-family: $fancyFont;
+        @include topLabelFont();
       }
     }
 
@@ -39,6 +44,7 @@
 
       &-label {
         margin-right: $label-picture-offset;
+        text-align: right;
       }
     }
 
@@ -47,10 +53,11 @@
 
       &-label {
         margin-left: $label-picture-offset;
+        text-align: left;
       }
     }
 
-    &-heart {
+    &-icon {
       margin: 0 -30px;
       z-index: 1;
       position: relative;
@@ -58,60 +65,100 @@
       flex-direction: column;
       align-items: center;
 
-      &-icon {
+      &-glyph {
         font-size: 125px;
-        color: #d64e4c;
         vertical-align: 12px;
         text-shadow: 0 7px 3px rgba(255, 255, 255, 0.41);
 
-        &-bump {
-          animation-name: heart-bump;
-          animation-duration: 1250ms;
-          animation-iteration-count: 1;
-          animation-timing-function: ease-out;
-          animation-delay: 2s;
+        &-heart {
+          color: #d64e4c;
+          &-bump {
+            animation-name: heart-bump;
+            animation-duration: 1250ms;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            animation-delay: 2 * $translate-duration + 200ms;
 
-          @keyframes heart-bump {
-            0% {
-              transform: scale(1);
-            }
-            30% {
-              transform: scale(1.3);
-            }
-            50% {
-              transform: scale(1.2);
-            }
-            80% {
-              transform: scale(1.4);
-            }
-            100% {
-              transform: scale(1);
+            @keyframes heart-bump {
+              0% {
+                transform: scale(1);
+              }
+              30% {
+                transform: scale(1.3);
+              }
+              50% {
+                transform: scale(1.2);
+              }
+              80% {
+                transform: scale(1.4);
+              }
+              100% {
+                transform: scale(1);
+              }
             }
           }
         }
+
+        &-plus {
+          color: transparentize($hint-text-color, 0.5);
+
+          &-bump {
+            animation-name: plus-bump;
+            animation-duration: 1250ms;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            animation-delay: 2 * $translate-duration + 200ms;
+
+            @keyframes plus-bump {
+              0% {
+                transform: scale(1);
+              }
+              50% {
+                transform: scale(1.4);
+              }
+              100% {
+                transform: scale(1);
+              }
+            }
+          }
+        }
+
       }
 
       &-separator {
-        position: absolute;
-        bottom: 0;
-        font-size: 130%;
-        font-family: $fancyFont;
+        @include topLabelFont();
+        opacity: 0;
 
         @include appearOnYTranslate();
+        animation-delay: $translate-duration / 2;
       }
     }
   }
 
   &-equals {
-    margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    padding: 0 10px;
 
     &-label {
-      font-weight: bold;
-      font-size: 130%;
+      width: 100%;
+      font-family: $fancyFont;
+      font-size: 120%;
+      margin-bottom: 15px;
+    }
+
+    &-part {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+
+      &-first {
+        border-right: 1px solid $hint-text-color;
+      }
     }
   }
+
 
   &-displayed .couple-result-top {
     &-left, &-right {

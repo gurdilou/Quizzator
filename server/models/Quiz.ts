@@ -12,9 +12,11 @@ import {
     VotersMap
 } from "../shared/Question";
 import {QuizState} from "../shared/QuizState";
+import {QuizQuestions} from "./QuizQuestions";
 
 // TODO tlu Remove choice id require
 export class Quiz {
+    private readonly questions: QuestionKind[];
     private results: ResultToQuestion[] = [];
     private closed: boolean = false;
 
@@ -25,11 +27,12 @@ export class Quiz {
         votes: VotersMap
     };
 
-    constructor(private questions: QuestionKind[]) {
+    constructor(questions: QuestionKind[]) {
         if (!questions || !questions.length) {
-            throw new Error("Quizz must have questions.");
+            throw new Error("Quiz must have questions.");
         }
 
+        this.questions = QuizQuestions.generateKeys(questions);
     }
 
     /**
@@ -99,7 +102,7 @@ export class Quiz {
      */
     public votesFor(voterId: string, choiceSelectedId: string) {
         if (!this.currentQuestion) {
-            throw new Error("Quizz not started, or votes have been closed");
+            throw new Error("Quiz not started, or votes have been closed");
         }
         let choice = this.getChoiceFromId(choiceSelectedId);
         if (!choice) {

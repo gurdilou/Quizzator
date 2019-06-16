@@ -25,7 +25,8 @@ let FinalReportAbs = (props: FinalReportProps) => {
                 index++;
                 if (isResultToMegaQuestion(item)) {
                     switch (item.resultAnimation) {
-                        case "couple":
+                        case "couple-heart":
+                        case "couple-plus":
                             let left = item.results[0];
                             let right = item.results[1];
                             return (
@@ -37,7 +38,7 @@ let FinalReportAbs = (props: FinalReportProps) => {
                                         {right.question.label}
                                     </span>
                                     <div className="final-report-item-result">
-                                        <CoupleResult left={left} right={right}/>
+                                        <CoupleResult left={left} right={right} animation={item.resultAnimation}/>
                                     </div>
                                 </div>
                             );
@@ -45,7 +46,7 @@ let FinalReportAbs = (props: FinalReportProps) => {
                     return null;
                 } else {
                     let firsts = item.rankedResults[1];
-                    if(!firsts || !firsts.length) {
+                    if (!firsts || !firsts.length) {
                         return (
                             <div key={item.question.key} className={"final-report-item"}>
                                 <Index index={index}/>
@@ -68,7 +69,8 @@ let FinalReportAbs = (props: FinalReportProps) => {
                                         <Card key={firstItem.choice.id}>
                                             {firstItem.choice.imageUrl &&
                                             <SquareImage url={firstItem.choice.imageUrl}/>}
-                                            <span className="final-report-item-result-label">
+                                            <span
+                                                className={"final-report-item-result-label " + (firstItem.choice.imageUrl ? "" : "final-report-item-result-label-only")}>
                                                 {firstItem.choice.label}
                                             </span>
                                         </Card>

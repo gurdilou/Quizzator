@@ -16,6 +16,7 @@ html {
 }
 
 body {
+  //noinspection CssUnknownTarget
   background: url('/images/lilypads.png') repeat;
   color: $text-color;
   font-family: "Ubuntu", sans-serif;
@@ -27,6 +28,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  .loading {
+    margin: auto;
+    color: $hint-text-color;
+  }
 }
 @import "fonts";
 @import '../../node_modules/font-awesome/scss/font-awesome.scss';

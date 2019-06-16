@@ -23,6 +23,7 @@ import {ErrorWidget} from "./parts/ErrorWidget";
 import {PageStub} from "./widgets/PageStub";
 import {AdminGoToNextMessage} from "../../server/shared/AdminMessageSend";
 import {ViewerWhatsUpMessage} from "../../server/shared/ViewerMessageSend";
+import {ErrorBoundary} from "./widgets/ErrorBoundary";
 
 export namespace Viewer {
     export interface Props {
@@ -53,6 +54,7 @@ export class Viewer extends React.Component<Viewer.Props, Viewer.State> {
             loading: false,
             secret: null
         }
+
     }
 
     private readonly handleData = (msg: string) => {
@@ -156,7 +158,8 @@ export class Viewer extends React.Component<Viewer.Props, Viewer.State> {
                 config = {
                     title: this.getCurrentQuestionLabel(),
                     content: (
-                        <div className={"viewer-result "+((this.state.partOfMegaQuestion && !this.props.isAdmin) ? "viewer-result-fill" : "")}>
+                        <div
+                            className={"viewer-result " + ((this.state.partOfMegaQuestion && !this.props.isAdmin) ? "viewer-result-fill" : "")}>
                             <VoterCounter votesCount={this.getCurrentSingleQuestionResult().numberOfParticipants}/>
                             {
                                 (this.state.partOfMegaQuestion && !this.props.isAdmin) ?
@@ -197,24 +200,26 @@ export class Viewer extends React.Component<Viewer.Props, Viewer.State> {
         }
 
         return (
-            <PageStub title={config.title}>
-                <Websocket url={this.computeWebSocketUrl()}
-                           onOpen={() => {
-                               this.refWebSocket.sendMessage(JSON.stringify({type: "whatsup"} as ViewerWhatsUpMessage));
-                           }}
-                           onMessage={this.handleData}
-                           ref={(ref: any) => {
-                               this.refWebSocket = ref;
-                           }}
-                />
+            <ErrorBoundary>
+                <PageStub title={config.title}>
+                    <Websocket url={this.computeWebSocketUrl()}
+                               onOpen={() => {
+                                   this.refWebSocket.sendMessage(JSON.stringify({type: "whatsup"} as ViewerWhatsUpMessage));
+                               }}
+                               onMessage={this.handleData}
+                               ref={(ref: any) => {
+                                   this.refWebSocket = ref;
+                               }}
+                    />
 
-                {config.content}
+                    {config.content}
 
-                {config.buttonLabel &&
-                <Button onClick={this.onNext} label={config.buttonLabel} loading={this.state.loading}
-                        alignSelf="center"/>
-                }
-            </PageStub>
+                    {config.buttonLabel &&
+                    <Button onClick={this.onNext} label={config.buttonLabel} loading={this.state.loading}
+                            alignSelf="center"/>
+                    }
+                </PageStub>
+            </ErrorBoundary>
         )
     }
 

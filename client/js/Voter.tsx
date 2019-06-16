@@ -16,6 +16,7 @@ import {ErrorWidget} from "./parts/ErrorWidget";
 import {SocketError} from "./spec/SocketError";
 import {PageStub} from "./widgets/PageStub";
 import {FinalReport} from "./questionReports/FinalReport";
+import {ErrorBoundary} from "./widgets/ErrorBoundary";
 
 export namespace Voter {
     export interface Props {
@@ -107,6 +108,7 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
                 });
                 break;
             case "resume":
+                Voter.removeId();
                 this.setState({
                     show: "resume",
                     question: null,
@@ -142,12 +144,12 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
         switch (this.state.show) {
             case "splash":
                 config = {
-                    title: "Quizz sur Paul et Pauline",
+                    title: "Quiz sur Paul et Pauline",
                     content: (
                         <div className="splash-screen">
                             <i className="fa fa-hourglass splash-screen-icon-spin fa-3x fa-fw"/>
                             <p className="splash-screen-waiting">
-                                Le quizz va bientôt commencer...
+                                Le quiz va bientôt commencer...
                             </p>
                         </div>
                     )
@@ -188,30 +190,50 @@ export class Voter extends React.Component<Voter.Props, Voter.State> {
         }
 
         return (
-            <PageStub title={config.title}>
-                <Websocket url={Voter.computeWebSocketUrl()}
-                           onMessage={this.handleData}
-                           onOpen={() => {
-                               this.refWebSocket.sendMessage(JSON.stringify({
-                                   type: "whatsup",
-                                   previousId: this.id ? this.id : null
-                               } as VoterInitMessage));
-                           }}
-                           ref={(ref: any) => {
-                               this.refWebSocket = ref;
-                           }}
-                />
-                {config.content}
-            </PageStub>
+            <ErrorBoundary>
+                <PageStub title={config.title}>
+                    <Websocket url={Voter.computeWebSocketUrl()}
+                               onMessage={this.handleData}
+                               onOpen={() => {
+                                   this.refWebSocket.sendMessage(JSON.stringify({
+                                       type: "whatsup",
+                                       previousId: this.id ? this.id : null
+                                   } as VoterInitMessage));
+                               }}
+                               ref={(ref: any) => {
+                                   this.refWebSocket = ref;
+                               }}
+                    />
+                    {config.content}
+                </PageStub>
+            </ErrorBoundary>
         )
     }
 
     private static loadPreviouslySavedId() {
-        return sessionStorage.getItem("quiz-voter-id");
+        try {
+            if (window.localStorage) {
+                return localStorage.getItem('quiz-voter-id');
+            }
+        } catch (e) {
+            return null;
+        }
     }
 
     private storeId() {
-        sessionStorage.setItem("quiz-voter-id", this.id);
+        try {
+            if (window.localStorage) {
+                localStorage.setItem("quiz-voter-id", this.id);
+            }
+        } catch (e) {}
+    }
+
+    private static removeId() {
+        try {
+            if (window.localStorage) {
+                localStorage.removeItem("quiz-voter-id");
+            }
+        } catch (e) {}
     }
 
     private static computeWebSocketUrl() {

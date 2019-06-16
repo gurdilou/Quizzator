@@ -20,7 +20,7 @@ export class ErrorWidget extends React.Component<ErrorWidget.Props> {
                     {this.props.error.msg}
                 </h2>
                 <p>
-                    Rafraîchissez la page pour reprendre le quizz.
+                    Rafraîchissez la page pour reprendre le quiz.
                 </p>
                 {this.props.error.error &&
                     <p>
