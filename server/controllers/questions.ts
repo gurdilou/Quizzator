@@ -22,7 +22,7 @@ let gotQuestion: MegaQuestion = {
             choices: [
                 {
                     label: "Samwell Tarly, l'érudit innocent",
-                    imageUrl: "images/TyrionLannister_low.jpg"
+                    imageUrl: "images/Samwell_low.jpg"
                 },
                 {
                     label: "John Snow, le leader ténébreux malgré lui",
@@ -36,10 +36,12 @@ let gotQuestion: MegaQuestion = {
                 //   label: "Petyr Baelish, le roublard pas si malin"
                 // },
                 {
-                    label: "Ned Stark, le bon père de famille avec la tête sur les épaules"
+                    label: "Ned Stark, le bon père de famille avec la tête sur les épaules",
+                    imageUrl: "images/Ned_low.jpg"
                 },
                 {
-                    label: "Jaime Lannister, le beau gosse à la poigne d'acier"
+                    label: "Jaime Lannister, le beau gosse à la poigne d'acier",
+                    imageUrl: "images/Jaime_low.jpg"
                 }
 
             ],
@@ -48,22 +50,25 @@ let gotQuestion: MegaQuestion = {
             label: "... Et quel personnage de Game of thrones serait Pauline ?",
             choices: [
                 {
-                    label: "Sansa Stark, la rose qui a dévoilé ses épines"
-                    // label: "Sansa Stark, la princesse à l'école Disney à l'école de la vie"
+                    label: "Sansa Stark, la rose qui a dévoilé ses épines",
+                    // label: "Sansa Stark, la princesse à l'école Disney à l'école de la vie",
+                    imageUrl: "images/Sansa_low.jpg"
                 },
                 {
-                    label: "Lyanna Mormont, petite mais costaud"
+                    label: "Lyanna Mormont, petite mais costaud",
+                    imageUrl: "images/Lyanna_low"
                 },
                 {
                     label: "Daenerys Targaryen, la reine des grillades",
-                    imageUrl: "images/DaenerysTargaryen_low.png"
+                    imageUrl: "images/Dany_low.png"
                 },
                 {
                     label: "Arya Stark, la mini-ninja",
                     imageUrl: "images/AryaStark_low.png"
                 },
                 {
-                    label: "Cersei Lannister, la mère-femme active"
+                    label: "Cersei Lannister, la mère-femme active",
+                    imageUrl: "images/Cersei_low.jpg"
                 }
             ],
         }
@@ -79,16 +84,17 @@ let paulWasAMeal: SingleQuestion = {
             imageUrl: "images/karadoc_low.jpg"
         },
         {
-            label: "\"C'est une recette de BBC good food\""
-        },
-        {
             label: "Un truc simple, seulement 2h de cuisson."
         },
         {
             label: "Quiche aux restes"
         },
         {
-            label: "\"Attends je rajoute un peu d'épices\""
+            label: "C'est une recette de BBC good food",
+            imageUrl: "images/BBC_low.png"
+        },
+        {
+            label: "Attends je rajoute un peu d'épices"
         }
     ],
     resultAnimation: "top3",
@@ -97,13 +103,16 @@ let paulineWasFabric: SingleQuestion = {
     label: "Si Pauline était un tissu ?",
     choices: [
         {
-            label: "De la popeline, brillante et il est agréable de travailler avec"
+            label: "De la popeline, brillante et il est agréable de travailler avec",
+            imageUrl: "images/popeline_low.jpg"
         },
         {
-            label: "Du jersey de coton, souple et multi-fonction"
+            label: "Du jersey de coton, souple et multi-fonction",
+            imageUrl: "images/jersey_low.jpg"
         },
         {
-            label: "De la flanelle, douce, les mamans et les enfants l'adorent"
+            label: "De la flanelle, douce, les mamans et les enfants l'adorent",
+            imageUrl: "images/flanelle_low.jpg"
         }
     ],
     resultAnimation: "top3"
