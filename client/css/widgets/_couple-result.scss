@@ -100,7 +100,7 @@
         }
 
         &-plus {
-          color: transparentize($hint-text-color, 0.5);
+          color: transparentize($hint-text-color, 0.05);
 
           &-bump {
             animation-name: plus-bump;

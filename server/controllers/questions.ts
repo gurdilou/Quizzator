@@ -56,11 +56,11 @@ let gotQuestion: MegaQuestion = {
                 },
                 {
                     label: "Lyanna Mormont, petite mais costaud",
-                    imageUrl: "images/Lyanna_low"
+                    imageUrl: "images/Lyanna_low.jpg"
                 },
                 {
                     label: "Daenerys Targaryen, la reine des grillades",
-                    imageUrl: "images/Dany_low.png"
+                    imageUrl: "images/Dany_low.jpg"
                 },
                 {
                     label: "Arya Stark, la mini-ninja",
@@ -84,17 +84,20 @@ let paulWasAMeal: SingleQuestion = {
             imageUrl: "images/karadoc_low.jpg"
         },
         {
-            label: "Un truc simple, seulement 2h de cuisson."
+            label: "Un truc simple, seulement 2h de cuisson.",
+            imageUrl: "images/assiette_low.jpg"
         },
         {
-            label: "Quiche aux restes"
+            label: "Quiche aux restes",
+            imageUrl: "images/quiche_low.jpg"
         },
         {
             label: "C'est une recette de BBC good food",
-            imageUrl: "images/BBC_low.png"
+            imageUrl: "images/who_low.jpg"
         },
         {
-            label: "Attends je rajoute un peu d'épices"
+            label: "Attends je rajoute un peu d'épices",
+            imageUrl: "images/spicy_low.jpg"
         }
     ],
     resultAnimation: "top3",
@@ -123,13 +126,16 @@ let monuments: MegaQuestion = {
             label: "Si Pauline était un monument ? ...",
             choices: [
                 {
-                    label: "La statue de la Liberté, une grande dame porteuse de valeurs (existe aussi en petit format)"
+                    label: "La statue de la Liberté, une grande dame porteuse de valeurs (existe aussi en petit format)",
+                    imageUrl: "images/statut-liberte_low.jpg"
                 },
                 {
-                    label: "Les jardins de Versailles, beaux et raffinés"
+                    label: "Les jardins de Versailles, beaux et raffinés",
+                    imageUrl: "images/versaille_low.jpeg"
                 },
                 {
-                    label: "La sagrada familia, une fashionista qui sait se faire attendre"
+                    label: "La sagrada familia, une fashionista qui sait se faire attendre",
+                    imageUrl: "images/sagrada_low.jpg"
                 }
             ]
         },
@@ -137,13 +143,16 @@ let monuments: MegaQuestion = {
             label: "...Et quel monument serait Paul ?",
             choices: [
                 {
-                    label: "La tour Eiffel, une grande tige universellement aimée"
+                    label: "La tour Eiffel, une grande tige universellement aimée",
+                    imageUrl: "images/eiffel_low.jpg"
                 },
                 {
-                    label: "Les grottes de Lascaux, pleines d'intérêts et mystères"
+                    label: "Les grottes de Lascaux, pleines d'intérêts et mystères",
+                    imageUrl: "images/lascaux_low.jpg"
                 },
                 {
-                    label: "Le Taj Mahal, élégant et romantique"
+                    label: "Le Taj Mahal, élégant et romantique",
+                    imageUrl: "images/taj_mahal_low.jpeg"
                 }
             ]
         }
@@ -157,15 +166,23 @@ let retirement: SingleQuestion = {
     choices: [
         {
             label: "Sous le soleil et les cocotiers",
+            imageUrl: "images/plage_low.jpg"
         },
         {
-            label: "En Bretagne, sous les nuages et les dolmens"
+            label: "En Bretagne, sous les nuages et les dolmens",
+            imageUrl: "images/bretagne_low.jpg"
         },
         {
-            label: "À la campagne avec un potager et des poules"
+            label: "À la campagne avec un potager et des poules",
+            imageUrl: "images/campagne_low.jpg"
         },
         {
-            label: "Dans une épicerie asiatique qui fait aussi mercerie"
+            label: "Dans une épicerie asiatique qui fait aussi mercerie",
+            imageUrl: "images/marche_low.jpg"
+        },
+        {
+            label: "À la montagne",
+            imageUrl: "images/raclette_low.jpg"
         }
     ]
 };
@@ -177,16 +194,20 @@ let desertIsland: MegaQuestion = {
             label: "Qu'emmènerait Paul sur une île déserte ? ...",
             choices: [
                 {
-                    label: "Son rice cooker"
+                    label: "Son rice cooker",
+                    imageUrl: "images/cooker.png"
                 },
                 {
-                    label: "Ses Super Picsou géants"
+                    label: "Ses Super Picsou géants",
+                    imageUrl: "images/picsou_low.jpg"
                 },
                 {
-                    label: "De la crème solaire"
+                    label: "De la crème solaire",
+                    imageUrl: "images/coup_soleil_low.png"
                 },
                 {
-                    label: "Tous ses BBC good food"
+                    label: "Tous ses BBC good food",
+                    imageUrl: "images/coffe_low.jpg"
                 }
             ]
         },
@@ -194,16 +215,20 @@ let desertIsland: MegaQuestion = {
             label: "...Et qu'emmènerait Pauline ?",
             choices: [
                 {
-                    label: "Une machine à coudre"
+                    label: "Une machine à coudre",
+                    imageUrl: "images/singer_low.jpg"
                 },
                 {
-                    label: "Ses chaussures préférées"
+                    label: "Ses chaussures préférées",
+                    imageUrl: "images/crocs_low.jpeg"
                 },
                 {
-                    label: "Un bon roman"
+                    label: "Un bon roman",
+                    imageUrl: "images/roman_low.jpg"
                 },
                 {
-                    label: "Un puzzle cent mille pièces"
+                    label: "Un puzzle cent mille pièces",
+                    imageUrl: "images/puzzle_low.jpg"
                 }
             ]
         }
@@ -216,13 +241,17 @@ let downtonAbbey: MegaQuestion = {
             label: "Dans Downton Abbey, qui serait Pauline ? ...",
             choices: [
                 {
-                    label: "Violet Crawley"
+                    // TODO AJOUTER LABELS
+                    label: "Violet Crawley, ",
+                    imageUrl: "images/violet_low.jpg"
                 },
                 {
-                    label: "Beryl Patmore"
+                    label: "Beryl Patmore, ",
+                    imageUrl: "images/beryl.png"
                 },
                 {
-                    label: "Mary crawley"
+                    label: "Mary crawley, ",
+                    imageUrl: "images/mary_low.jpg"
                 }
             ]
         },
@@ -230,13 +259,16 @@ let downtonAbbey: MegaQuestion = {
             label: "...Et qui serait Paul ?",
             choices: [
                 {
-                    label: "Robert Crawley"
+                    label: "Robert Crawley",
+                    imageUrl: "images/robert_low.png"
                 },
                 {
-                    label: "Charles Carson"
+                    label: "Charles Carson",
+                    imageUrl: "images/charles_low.jpg"
                 },
                 {
-                    label: "Joseph Molesley"
+                    label: "Joseph Molesley",
+                    imageUrl: "images/joseph_low.jpg"
                 }
             ]
         }
@@ -248,13 +280,16 @@ let paulFavoriteReading: SingleQuestion = {
     label: "Quelle était la lecture préférée de Paul dans son enfance ?",
     choices: [
         {
-            label: "Un catalogue IKEA"
+            label: "Un catalogue IKEA",
+            imageUrl: "images/ikea_low.jpg"
         },
         {
-            label: "Un exemplaire de cuisine et vins"
+            label: "Un exemplaire de cuisine et vins",
+            imageUrl: "images/cuisine_et_vins_low.png"
         },
         {
-            label: "Un dictionnaire"
+            label: "Un dictionnaire",
+            imageUrl: "images/larousse_low.jpeg"
         }
     ],
     resultAnimation: "top3"
@@ -265,39 +300,49 @@ let paulNightmareProtect: SingleQuestion = {
     resultAnimation: "top3",
     choices: [
         {
-            label: "Une peluche mangeuse de cauchemars"
+            label: "Une peluche mangeuse de cauchemars",
+            imageUrl: "images/ours_low.jpg"
         },
         {
-            label: "Un pistolet tueur de cauchemars"
+            label: "Un pistolet tueur de cauchemars",
+            imageUrl: "images/gun_low.jpg"
         },
         {
-            label: "Un gomme à effacer les cauchemars"
+            label: "Un gomme à effacer les cauchemars",
+            imageUrl: "images/eraser_low.jpg"
         },
         {
-            label: "Il a lu la définition d'un cauchemar dans le dictionnaire"
+            label: "Il a lu la définition d'un cauchemar dans le dictionnaire",
+            imageUrl: "images/objection.png"
         }
     ]
 };
+
 let paulGreatMistake: SingleQuestion = {
     label: "Quelle est la bétise mémorable de Paul ?",
     resultAnimation: "top3",
     choices: [
         {
-            label: "Enfermer les parents dehors"
+            label: "Enfermer les parents dehors",
+            imageUrl: "images/outside.jpg"
         },
         {
-            label: "Rater la cible et percer la piscine en tirant à l'arc"
+            label: "Rater la cible et percer la piscine en tirant à l'arc",
+            imageUrl: "images/pool_low.jpg"
         },
         {
-            label: "Dessiner aux Crayolas sur les portes de placards neuves de la cuisine"
+            label: "Dessiner aux Crayolas sur les portes de placards neuves de la cuisine",
+            imageUrl: "images/draw_low.jpg"
         },
         {
-            label: "Ouvrir tous les paquets de lessive du magasin pour récupérer le jouet"
+            label: "Ouvrir tous les paquets de lessive du magasin pour récupérer le jouet",
+            imageUrl: "images/lessive_low.jpg"
         },
 
     ]
 };
 
+// TODO ADD LOUISSE QUESTIONS
 
 export let questions: QuestionKind[] = [
     painChocoQuestion,
