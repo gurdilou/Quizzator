@@ -241,8 +241,7 @@ let downtonAbbey: MegaQuestion = {
             label: "Dans Downton Abbey, qui serait Pauline ? ...",
             choices: [
                 {
-                    // TODO AJOUTER LABELS
-                    label: "Violet Crawley, ",
+                    label: "Violet Crawley, n’hésite pas à donner son avis avec finesse, perspicacité et humour",
                     imageUrl: "images/violet_low.jpg"
                 },
                 {
@@ -250,8 +249,12 @@ let downtonAbbey: MegaQuestion = {
                     imageUrl: "images/beryl.png"
                 },
                 {
-                    label: "Mary crawley, ",
+                    label: "Mary crawley, aristocrate gâtée mais aussi féministe",
                     imageUrl: "images/mary_low.jpg"
+                },
+                {
+                    label: "Anna smith, femme de chambre, débrouillarde, courageuse et honnête",
+                    imageUrl: "images/anna_low.jpg"
                 }
             ]
         },
@@ -259,7 +262,7 @@ let downtonAbbey: MegaQuestion = {
             label: "...Et qui serait Paul ?",
             choices: [
                 {
-                    label: "Robert Crawley",
+                    label: "Robert Crawley, le patriarche le vrai, il est le big boss, mais c'est un gars bien, bourré de principes",
                     imageUrl: "images/robert_low.png"
                 },
                 {
@@ -267,8 +270,16 @@ let downtonAbbey: MegaQuestion = {
                     imageUrl: "images/charles_low.jpg"
                 },
                 {
-                    label: "Joseph Molesley",
+                    label: "Joseph Molesley, ",
                     imageUrl: "images/joseph_low.jpg"
+                },
+                {
+                    label: "Matthew Crawley, héritier de Downton Abbey, il ose travailler pour gagner sa croûte",
+                    imageUrl: "images/matthew_low.jpg"
+                },
+                {
+                    label: "Thomas Branson, révolutionnaire dans l’âme il a une vraie haine des aristocrates et de la bourgeoisie",
+                    imageUrl: "images/tom_branson_low.jpg"
                 }
             ]
         }
@@ -338,22 +349,110 @@ let paulGreatMistake: SingleQuestion = {
             label: "Ouvrir tous les paquets de lessive du magasin pour récupérer le jouet",
             imageUrl: "images/lessive_low.jpg"
         },
+        {
+            label: "Lancer un fumigène artisanale dans la cour de récréation d'un collège",
+            imageUrl: "images/fumigene_low.jpg"
+        }
 
     ]
 };
 
-// TODO ADD LOUISSE QUESTIONS
+let paulineChildBusy: SingleQuestion = {
+    label: "Entre 4 et 6 ans, à quoi Pauline aimait occuper son temps libre ?",
+    resultAnimation: "top3",
+    choices: [
+        {
+            label: "Jouer à la poupée",
+            imageUrl: "images/poupee_low.jpg"
+        },
+        {
+            label: "Faire des dessins",
+            imageUrl: "images/pauline_draw_low.jpg"
+        },
+        {
+            label: "Faire ses devoirs", //bonne réponse
+            imageUrl: "images/homework_low.jpg"
+        }
+    ]
+};
+
+let paulineFirstWord: SingleQuestion = {
+    label: "Quel était le premier mot de Pauline ?",
+    resultAnimation: "top3",
+    choices: [
+        {
+            label: "\"Maman\""
+        },
+        {
+            label: "\"Caca\"",
+            imageUrl: "images/poop_low.png"
+        },
+        {
+            label: "\"Gâteau\"", // bonne réponse
+            imageUrl: "images/cake.jpeg"
+        }
+    ]
+};
+
+let paulineChildPlush: SingleQuestion = {
+    label: "Quel était le doudou de Pauline petite ?",
+    resultAnimation: "top3",
+    choices: [
+        {
+            label: "Un petit mouton, nommé mouton",
+            imageUrl: "images/sheep_low.png"
+        },
+        {
+            label: "Une petite couverture bleu de landau", //bonne réponse
+            imageUrl: "images/couverture_low.jpg"
+        },
+        {
+            label: "Un ours en peluche, nommé nounours",
+            imageUrl: "images/ted_low.jpg"
+        },
+        {
+            label: "Une marionnette renard nommé kettou",
+            imageUrl: "images/fox_low.jpg"
+        }
+    ]
+};
+
+let paulineSuffered: SingleQuestion = {
+    label: "Qu'est ce que David a cruellement fait subir à Pauline petite ?",
+    resultAnimation: "top3",
+    choices: [
+        {
+            label: "Il lui a coupé les cheveux",
+            imageUrl: "images/eleven_low.jpg"
+        },
+        {
+            label: "Il a lu son jounal intime",
+            imageUrl: "images/journal_low.jpg"
+        },
+        {
+            label: "Il l'a attachée à un arbre", // bonne réponse
+            imageUrl: "images/attache_low.jpg"
+        }
+    ]
+};
+
+let paulExtraQuestion : SingleQuestion = null;
 
 export let questions: QuestionKind[] = [
     painChocoQuestion,
     paulWasAMeal,
     paulineWasFabric,
     monuments,
-    retirement,
-    gotQuestion,
-    desertIsland,
-    downtonAbbey,
+    paulineChildBusy,
     paulFavoriteReading,
+    retirement,
+    paulineChildPlush,
     paulNightmareProtect,
-    paulGreatMistake
+    downtonAbbey,
+    paulGreatMistake,
+    paulineSuffered,
+    gotQuestion,
+    paulineFirstWord,
+    paulExtraQuestion,
+    desertIsland,
 ];
