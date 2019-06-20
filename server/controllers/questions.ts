@@ -245,10 +245,6 @@ let downtonAbbey: MegaQuestion = {
                     imageUrl: "images/violet_low.jpg"
                 },
                 {
-                    label: "Beryl Patmore, ",
-                    imageUrl: "images/beryl.png"
-                },
-                {
                     label: "Mary crawley, aristocrate gâtée mais aussi féministe",
                     imageUrl: "images/mary_low.jpg"
                 },
@@ -264,14 +260,6 @@ let downtonAbbey: MegaQuestion = {
                 {
                     label: "Robert Crawley, le patriarche le vrai, il est le big boss, mais c'est un gars bien, bourré de principes",
                     imageUrl: "images/robert_low.png"
-                },
-                {
-                    label: "Charles Carson",
-                    imageUrl: "images/charles_low.jpg"
-                },
-                {
-                    label: "Joseph Molesley, ",
-                    imageUrl: "images/joseph_low.jpg"
                 },
                 {
                     label: "Matthew Crawley, héritier de Downton Abbey, il ose travailler pour gagner sa croûte",
@@ -330,7 +318,7 @@ let paulNightmareProtect: SingleQuestion = {
 };
 
 let paulGreatMistake: SingleQuestion = {
-    label: "Quelle est la bétise mémorable de Paul ?",
+    label: "Quelle est la bêtise mémorable de Paul ?",
     resultAnimation: "top3",
     choices: [
         {
@@ -358,7 +346,7 @@ let paulGreatMistake: SingleQuestion = {
 };
 
 let paulineChildBusy: SingleQuestion = {
-    label: "Entre 4 et 6 ans, à quoi Pauline aimait occuper son temps libre ?",
+    label: "Entre 4 et 6, à quoi Pauline aimait occuper son temps libre ?",
     resultAnimation: "top3",
     choices: [
         {
@@ -436,7 +424,115 @@ let paulineSuffered: SingleQuestion = {
     ]
 };
 
-let paulExtraQuestion : SingleQuestion = null;
+let musicStars: MegaQuestion = {
+    resultAnimation: "couple-heart",
+    questions: [
+        {
+            label: "Si Paul était une star de musique dans les années 2000 ? ...",
+            choices: [
+                {
+                    label: "Grégoire, \"toi + moi\"",
+                    imageUrl: "images/gregoire.jpg"
+                },
+                {
+                    label: "Mondotek, \"Alive !\" => l'arrivée de la tektonik !",
+                    imageUrl: "images/tektonik_low.jpeg"
+                },
+                {
+                    label: "Patrick Sebastien, \"Ah si tu pouvais fermer ta gueule\"",
+                    imageUrl: "images/patrick_low.jpg"
+                },
+                {
+                    label: "Christophe Maé, \"on s'attache\"",
+                    imageUrl: "images/christophe_low.jpg"
+                },
+                {
+                    label: "Jean-Jacques Goldman, \"4 mots sur  un piano\"",
+                    imageUrl: "images/jj-goldman_low.jpeg"
+                }
+
+
+            ]
+        }, {
+            label: "... Et Pauline serait ?",
+            choices: [
+                {
+                    label: "Yelle, \"Parle à ma main\"",
+                    imageUrl: "images/yelle.jpg"
+                },
+                {
+                    label: "Ilona Mitrecey, \"Un monde parfait\" (un oiseau, une chèvre, une abeille...)",
+                    imageUrl: "images/ilona_low.jpg"
+                },
+                {
+                    label: "Olivia Ruiz, \"La femme chocolat\"",
+                    imageUrl: "images/olivia_low.jpg"
+                },
+                {
+                    label: "Diam's, \"Génération nan nan\"",
+                    imageUrl: "images/diams_low.jpg"
+                },
+                {
+                    label: "Koxie, \"Garçon\"",
+                    imageUrl: "images/koxie.jpeg"
+                }
+            ]
+        }
+    ]
+};
+
+let cuteTheyAre : SingleQuestion = {
+    label: "Comment trouvez-vous Paul et Pauline mignons ?",
+    resultAnimation: "top3",
+    choices: [
+        {
+            label: "Comme des chatons",
+            imageUrl: "images/chaton_low.jpg"
+        },
+        {
+            label: "Comme des bébés hérisson",
+            imageUrl: "images/herisson_low.jpg"
+        },
+        {
+            label: "Comme des pandas roux",
+            imageUrl: "images/panda_roux_low.jpeg"
+        },
+        {
+            label: "Comme des bébés chèvres",
+            imageUrl: "images/chevre_low.jpg"
+        },
+        {
+            label: "Toutes les réponses d'avant ! "
+        }
+    ]
+};
+
+let paulFavoriteShop: SingleQuestion = {
+    label: "Quel est le magasin préféré de Paul ?",
+    resultAnimation: "top3",
+    choices: [
+        {
+            label: "Tang frère",
+            imageUrl: "images/tang-frere-longo.png"
+        },
+        {
+            label: "Steam",
+            imageUrl: "images/steam.png"
+        },
+        {
+            label: "Son petit torréfacteur parisien",
+            imageUrl: "images/whatelse_low.jpg"
+        },
+        {
+            label: "Leroy Pinpin",
+            imageUrl: "images/leroy_low.png"
+        },
+        {
+            label: "\"Je prends du fromage à Monop\"",
+            imageUrl: "images/monop_low.jpg"
+        }
+    ]
+};
 
 export let questions: QuestionKind[] = [
     painChocoQuestion,
@@ -445,14 +541,16 @@ export let questions: QuestionKind[] = [
     monuments,
     paulineChildBusy,
     paulFavoriteReading,
-    retirement,
-    paulineChildPlush,
+    // retirement,
+    musicStars,
     paulNightmareProtect,
+    paulineChildPlush,
     downtonAbbey,
-    paulGreatMistake,
     paulineSuffered,
+    paulGreatMistake,
     gotQuestion,
     paulineFirstWord,
-    paulExtraQuestion,
+    paulFavoriteShop,
     desertIsland,
+    cuteTheyAre
 ];
