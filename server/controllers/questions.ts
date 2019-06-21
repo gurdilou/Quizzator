@@ -513,7 +513,7 @@ let paulFavoriteShop: SingleQuestion = {
     choices: [
         {
             label: "Tang frère",
-            imageUrl: "images/tang-frere-longo.png"
+            imageUrl: "images/tang-frere-logo.png"
         },
         {
             label: "Steam",
@@ -541,7 +541,6 @@ export let questions: QuestionKind[] = [
     monuments,
     paulineChildBusy,
     paulFavoriteReading,
-    // retirement,
     musicStars,
     paulNightmareProtect,
     paulineChildPlush,
