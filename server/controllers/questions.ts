@@ -84,7 +84,7 @@ let paulWasAMeal: SingleQuestion = {
             imageUrl: "images/karadoc_low.jpg"
         },
         {
-            label: "Un truc simple, seulement 2h de cuisson.",
+            label: "Un truc simple, seulement 2h de cuisson",
             imageUrl: "images/assiette_low.jpg"
         },
         {
@@ -241,15 +241,15 @@ let downtonAbbey: MegaQuestion = {
             label: "Dans Downton Abbey, qui serait Pauline ? ...",
             choices: [
                 {
-                    label: "Violet Crawley, n’hésite pas à donner son avis avec finesse, perspicacité et humour",
+                    label: "Violet Crawley, donne son avis avec finesse, perspicacité et humour",
                     imageUrl: "images/violet_low.jpg"
                 },
                 {
-                    label: "Mary crawley, aristocrate gâtée mais aussi féministe",
+                    label: "Mary Crawley, aristocrate gâtée mais aussi féministe",
                     imageUrl: "images/mary_low.jpg"
                 },
                 {
-                    label: "Anna smith, femme de chambre, débrouillarde, courageuse et honnête",
+                    label: "Anna Smith, femme de chambre, débrouillarde, courageuse et honnête",
                     imageUrl: "images/anna_low.jpg"
                 }
             ]
@@ -258,15 +258,15 @@ let downtonAbbey: MegaQuestion = {
             label: "...Et qui serait Paul ?",
             choices: [
                 {
-                    label: "Robert Crawley, le patriarche le vrai, il est le big boss, mais c'est un gars bien, bourré de principes",
+                    label: "Robert Crawley, le patriarche, le big boss, un gars bien bourré de principes",
                     imageUrl: "images/robert_low.png"
                 },
                 {
-                    label: "Matthew Crawley, héritier de Downton Abbey, il ose travailler pour gagner sa croûte",
+                    label: "Matthew Crawley, héritier de Downton Abbey, ose travailler",
                     imageUrl: "images/matthew_low.jpg"
                 },
                 {
-                    label: "Thomas Branson, révolutionnaire dans l’âme il a une vraie haine des aristocrates et de la bourgeoisie",
+                    label: "Thomas Branson, révolutionnaire dans l’âme, déteste les aristocrates et la bourgeoisie",
                     imageUrl: "images/tom_branson_low.jpg"
                 }
             ]
@@ -307,7 +307,7 @@ let paulNightmareProtect: SingleQuestion = {
             imageUrl: "images/gun_low.jpg"
         },
         {
-            label: "Un gomme à effacer les cauchemars",
+            label: "Une gomme à effacer les cauchemars",
             imageUrl: "images/eraser_low.jpg"
         },
         {
@@ -414,7 +414,7 @@ let paulineSuffered: SingleQuestion = {
             imageUrl: "images/eleven_low.jpg"
         },
         {
-            label: "Il a lu son jounal intime",
+            label: "Il a lu son journal intime",
             imageUrl: "images/journal_low.jpg"
         },
         {
@@ -512,7 +512,7 @@ let paulFavoriteShop: SingleQuestion = {
     resultAnimation: "top3",
     choices: [
         {
-            label: "Tang frère",
+            label: "Tang frères",
             imageUrl: "images/tang-frere-logo.png"
         },
         {

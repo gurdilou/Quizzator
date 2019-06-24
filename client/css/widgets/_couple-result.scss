@@ -143,6 +143,7 @@
     margin-bottom: 25px;
     flex-wrap: wrap;
     padding: 0 10px;
+    flex-direction: row;
 
     &-label {
       width: 100%;
@@ -154,7 +155,8 @@
     &-part {
       display: flex;
       flex-direction: column;
-      width: 50%;
+      flex: auto;
+      padding: 0 5px;
 
       &-first {
         border-right: 1px solid $hint-text-color;
